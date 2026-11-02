@@ -518,7 +518,7 @@ namespace Alba.Game
             if (stage.PortalOpen) return "The way is open: reach the portal";
             if (stage.GemsFound < stage.GemsTotal) return $"Find the sealstones   {stage.GemsFound}/{stage.GemsTotal}";
             Enemy boss = stage.Boss;
-            if (boss != null && boss.Alive) return "Bring down Am Fomhair to open the gate";
+            if (boss != null && boss.Alive) return "Bring down Am Famhair to open the gate";
             return "Reach the portal";
         }
 
@@ -591,10 +591,10 @@ namespace Alba.Game
                     case StageEventKind.BossEnraged:
                         audioDirector.PlayAt(art.BruteRoar, at, 1f, 0.02f);
                         rig.Shake(0.8f);
-                        hud.Banner("Am Fomhair Rages", "It calls its brood");
+                        hud.Banner("Am Famhair Rages", "It calls its brood");
                         break;
                     case StageEventKind.BossDefeated:
-                        hud.Banner("Am Fomhair Falls", "The gate can open now");
+                        hud.Banner("Am Famhair Falls", "The gate can open now");
                         rig.Shake(0.6f);
                         break;
                     case StageEventKind.PlayerHurt:

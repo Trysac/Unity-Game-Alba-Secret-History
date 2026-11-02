@@ -122,7 +122,7 @@ def wisp_die():
 
 
 def brute_roar():
-    """Am Fomhair bellows."""
+    """Am Famhair bellows."""
     t = Track(1.6)
     t.add_tone(0, 1.1, 75, saw, 0.45, freq_end=55, attack=0.1, release=0.4, vibrato=0.04)
     t.add_tone(0, 1.1, 113, square, 0.15, freq_end=80, attack=0.1, release=0.4, vibrato=0.05)

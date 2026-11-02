@@ -6,7 +6,7 @@ namespace Alba.Game
 {
     /// <summary>
     /// A creature drawn from simple parts and animated in code: a crawler on eight jointed legs,
-    /// a wisp of red flame, or Am Fomhair, the giant. It mirrors an <see cref="Enemy"/> every frame.
+    /// a wisp of red flame, or Am Famhair, the giant. It mirrors an <see cref="Enemy"/> every frame.
     /// </summary>
     public sealed class CreatureView : MonoBehaviour
     {
@@ -156,7 +156,7 @@ namespace Alba.Game
             glow.renderMode = LightRenderMode.ForceVertex;
         }
 
-        // ---- Am Fomhair: the giant of Dunadd ----
+        // ---- Am Famhair: the giant of Dunadd ----
 
         void BuildBrute(Looks looks)
         {

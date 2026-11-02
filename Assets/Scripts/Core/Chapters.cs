@@ -201,7 +201,7 @@ namespace Alba.Core
             Index = 2,
             Title = "Dunadd Keep",
             Place = "Kilmartin Glen, the small hours",
-            Intro = "A ruined hill fort, its gate still guarded. Something huge paces the courtyard: Am Fomhair, " +
+            Intro = "A ruined hill fort, its gate still guarded. Something huge paces the courtyard: Am Famhair, " +
                 "the giant of the old stories. Gather the three sealstones and bring it down to open the way.",
             PageTitle = "Journal, page III",
             PageText = "The Fomorians were here before Alba had a name. One of them was chained in the keep at " +

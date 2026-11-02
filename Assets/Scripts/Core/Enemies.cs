@@ -38,7 +38,7 @@ namespace Alba.Core
             },
             new EnemySpec
             {
-                Kind = EnemyKind.Brute, Name = "Am Fomhair", Health = 720, Radius = 1.4f, WanderSpeed = 1.1f, ChaseSpeed = 2.3f,
+                Kind = EnemyKind.Brute, Name = "Am Famhair", Health = 720, Radius = 1.4f, WanderSpeed = 1.1f, ChaseSpeed = 2.3f,
                 Reach = 3.3f, Damage = 30, Windup = 0.95f, Recover = 1.5f, Aggro = 17f, Score = 600,
             },
         };
