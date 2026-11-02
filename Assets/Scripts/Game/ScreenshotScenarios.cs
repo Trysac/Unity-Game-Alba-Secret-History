@@ -194,9 +194,22 @@ namespace Alba.Game
                         stage.Player.HurtTimer = 1000f;
                         director.Run.Tick(1f / 60f, InputFrame.None);
                     }
-                    director.PlacePlayer(new Vec2(0f, -4f), 160f);
+                    // Line a few creatures of the waves up in front, and send the rest behind.
+                    const float yaw = 0f;
+                    stage.Player.Position = new Vec2(0f, -7f);
+                    int shown = 0;
+                    foreach (Enemy e in stage.Enemies)
+                    {
+                        if (!e.Alive) continue;
+                        float angle = shown < 4 ? yaw + (shown - 1.5f) * 18f : yaw + 180f;
+                        float distance = shown < 4 ? 7f + shown * 2f : 30f;
+                        e.Position = stage.Level.Resolve(stage.Player.Position + Vec2.FromYaw(angle) * distance, e.Spec.Radius);
+                        shown++;
+                    }
+                    director.PlacePlayer(stage.Player.Position, yaw);
                     stage.Player.Pitch = 3f;
-                    yield return Advance(0.8f);
+                    yield return Advance(0.3f);
+                    director.Hud.HideBanner();
                     break;
                 }
                 case "pause":

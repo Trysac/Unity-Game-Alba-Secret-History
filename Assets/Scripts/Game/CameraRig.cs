@@ -54,7 +54,7 @@ namespace Alba.Game
             torch.range = Tuning.FlashlightRange + 4f;
             torch.spotAngle = Tuning.FlashlightHalfAngle * 2f + 6f;
             torch.innerSpotAngle = Tuning.FlashlightHalfAngle;
-            torch.intensity = 1.8f;
+            torch.intensity = 1.5f;
             torch.shadows = LightShadows.Hard;
             torch.shadowStrength = 0.85f;
             torch.renderMode = LightRenderMode.ForcePixel;
@@ -73,7 +73,7 @@ namespace Alba.Game
             muzzleLight = muzzleObject.AddComponent<Light>();
             muzzleLight.type = LightType.Point;
             muzzleLight.color = Palette.Muzzle;
-            muzzleLight.range = 9f;
+            muzzleLight.range = 6f;
             muzzleLight.intensity = 0f;
             muzzleLight.shadows = LightShadows.None;
             ShowWeapon(WeaponKind.Pistol, instant: true);
@@ -202,13 +202,13 @@ namespace Alba.Game
                 : new Vector3(-kick * 10f, 0f, 0f);
             muzzleFlash.gameObject.SetActive(flash > 0.3f && shown != WeaponKind.Dirk);
             muzzleFlash.localScale = Vector3.one * (0.6f + flash);
-            muzzleLight.intensity = flash * 3f;
+            muzzleLight.intensity = flash * 1.4f;
 
             // The torch fades and stutters when the battery runs low.
             float charge = player.Battery;
             float stutter = charge < 0.15f ? (Mathf.PerlinNoise(Time.time * 18f, 0f) > 0.35f ? 1f : 0.2f) : 1f;
             torch.enabled = player.Lit;
-            torch.intensity = Mathf.Lerp(0.9f, 1.8f, Mathf.Clamp01(charge * 3f)) * stutter;
+            torch.intensity = Mathf.Lerp(0.8f, 1.5f, Mathf.Clamp01(charge * 3f)) * stutter;
             torchModel.localEulerAngles = new Vector3(90f - lookSwayY * 50f, lookSwayX * 50f, 0f);
         }
 
