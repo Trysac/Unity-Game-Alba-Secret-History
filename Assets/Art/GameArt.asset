@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bbba59b400598349afb58ae73e8914b, type: 3}
+  m_Name: GameArt
+  m_EditorClassIdentifier: Alba.Game::Alba.Game.GameArt
+  Lit: {fileID: 2100000, guid: fc4d16c597d9fc5468ffd162f033c966, type: 2}
+  Glowing: {fileID: 2100000, guid: 3cd51e4fc6108bc48a0e2e90bff700a2, type: 2}
+  Glow: {fileID: 2100000, guid: cef6d08a865349f4ca67004b6e23241f, type: 2}
+  Puff: {fileID: 2100000, guid: 9ab28d3a6a94bf646a2041a17eed541b, type: 2}
+  SoftDot: {fileID: 2800000, guid: 86d6c22396022ab49b637d87668250bc, type: 3}
+  Icon: {fileID: 2800000, guid: 2b3bf0a4c8bcdd84bad6594eff84d06e, type: 3}
+  TitleMusic: {fileID: 8300000, guid: 9438cbdbf3cd72641833f52cf17814af, type: 3}
+  NightMusic: {fileID: 8300000, guid: 226db38d8b01b7b40aa6d0746a449875, type: 3}
+  KeepMusic: {fileID: 8300000, guid: 392c00e6bf3703a4181636b4dc6514bc, type: 3}
+  DawnMusic: {fileID: 8300000, guid: 65fe3aadc4719224fa878a7b2262f1c3, type: 3}
+  Rain: {fileID: 8300000, guid: d40e81b9401f4af4fb5e8a04c95ce147, type: 3}
+  Wind: {fileID: 8300000, guid: b742860990e58ea4a90ce4a0de39fe53, type: 3}
+  Pistol: {fileID: 8300000, guid: 615e879ff3ec64d4a986bec482f7b5cb, type: 3}
+  Shotgun: {fileID: 8300000, guid: 56e8d92d3f04a684d8635af246a3b21d, type: 3}
+  Rifle: {fileID: 8300000, guid: 070355302a09f9042b48652a740c6937, type: 3}
+  Dirk: {fileID: 8300000, guid: a833479a61abb9c4683d4ffbe98af77d, type: 3}
+  DryFire: {fileID: 8300000, guid: d8f9742e76baf704b89a4f7a0756fdf7, type: 3}
+  Hit: {fileID: 8300000, guid: 2fd6598997bb1f743bbdaa83ba77ef20, type: 3}
+  Ricochet: {fileID: 8300000, guid: 09ab55a10b5d03641b97a0b928dd99f0, type: 3}
+  Immune: {fileID: 8300000, guid: 14a75564bce196c4bb42acee5a2c06e0, type: 3}
+  CrawlerAlert: {fileID: 8300000, guid: 5e24c04ef34c50346ae345daa517f38c, type: 3}
+  CrawlerWindup: {fileID: 8300000, guid: b25c79528a06a344da1118fbf37c9fd4, type: 3}
+  CrawlerDie: {fileID: 8300000, guid: 7d856b2fb02ad834ebcf3f1ece2c8a78, type: 3}
+  WispAlert: {fileID: 8300000, guid: c6ad98e0b5b4c58499a26ffe361c00eb, type: 3}
+  WispDie: {fileID: 8300000, guid: 3ddae8a8e79b2814ea92f553c439326f, type: 3}
+  BruteRoar: {fileID: 8300000, guid: 8dcac9f621e23884c80978f5f014c2f0, type: 3}
+  BruteWindup: {fileID: 8300000, guid: 5ec5b8d75df82e441901979608a2fc0d, type: 3}
+  BruteSlam: {fileID: 8300000, guid: 36841d06adddafa45aacf7b5a4a9645d, type: 3}
+  BruteDie: {fileID: 8300000, guid: ca9a5c19bddf6b64b95f64151785453c, type: 3}
+  Hurt: {fileID: 8300000, guid: a53ae35da02c9e148958119cf0753a0c, type: 3}
+  Heartbeat: {fileID: 8300000, guid: c61fd5c5ce2998e41b4de4c7395bb39b, type: 3}
+  Death: {fileID: 8300000, guid: caae166581e7c82448b8a38737a047e4, type: 3}
+  Potion: {fileID: 8300000, guid: 08d7bc5a239f80c408256a04f54b664f, type: 3}
+  Step: {fileID: 8300000, guid: 4193b234b78871b44b8d38d6a52715a9, type: 3}
+  Torch: {fileID: 8300000, guid: 25d92e4332cd9ca489c849c3fa0fda2d, type: 3}
+  TorchEmpty: {fileID: 8300000, guid: 99cef742d97465145a5cc7a6b2d5e5ef, type: 3}
+  Orb: {fileID: 8300000, guid: 899b33c6b6862cd45b481445c28258a0, type: 3}
+  Gem: {fileID: 8300000, guid: 599ef30c9526c3c4c87d37a4edf00c04, type: 3}
+  Page: {fileID: 8300000, guid: d8a752ccf11171f499249792e9739090, type: 3}
+  Ammo: {fileID: 8300000, guid: 8853a03e5d13aad499266ef647addd02, type: 3}
+  Lantern: {fileID: 8300000, guid: c55c1756b3f855140b5fa6d1e8683f82, type: 3}
+  PortalOpen: {fileID: 8300000, guid: 311609820ae3e7e47a25f3909a4f5776, type: 3}
+  Escape: {fileID: 8300000, guid: a83d985f64b253a4f9abbf5850a3f544, type: 3}
+  Wave: {fileID: 8300000, guid: 43cf7a1f850a3fb4bb2420ac845dfce9, type: 3}
+  Dawn: {fileID: 8300000, guid: 3b700f2901ffd9c4eb3fa02929895426, type: 3}
+  Move: {fileID: 8300000, guid: 6abfb89720d916749b6ccbc3d3536388, type: 3}
+  Select: {fileID: 8300000, guid: d5b8bc9d528b507498289af2bd4b9586, type: 3}
+  Pause: {fileID: 8300000, guid: fb227051aa81a8342b6fe5d2f0708c2c, type: 3}
+  GameOver: {fileID: 8300000, guid: a37e56abc49a36a498078e3016963156, type: 3}
+  Victory: {fileID: 8300000, guid: a8ca7dfca01e5714f8bccc1d3ccda03c, type: 3}

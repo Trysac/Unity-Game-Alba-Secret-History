@@ -4,6 +4,9 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Alba.unity
+    guid: 2687f01bc24783d4a94914b32978dda4
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
