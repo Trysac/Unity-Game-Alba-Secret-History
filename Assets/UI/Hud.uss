@@ -1,0 +1,487 @@
+/*
+ * Alba HUD: bone-white text on peat-dark panels, with blood-red and cold blue accents taken from
+ * the 2021 game. Exo 2 Black is the display face, Exo 2 SemiBold the text face. Designed at
+ * 1280x720 reference pixels; the panel settings scale it to the screen.
+ */
+
+:root {
+    --bone: #eee3cc;
+    --muted: #b8a993;
+    --blood: #c0202a;
+    --blood-dark: #5e0e14;
+    --orb: #5d8dff;
+    --gem: #c86bff;
+    --gold: #e7b75a;
+    --panel: rgba(12, 9, 11, 0.72);
+    --edge: rgba(192, 32, 42, 0.55);
+
+    color: var(--bone);
+    font-size: 18px;
+    -unity-font-definition: url("ExoSemiBold.asset");
+}
+
+.display {
+    -unity-font-definition: url("ExoBlack.asset");
+}
+
+.hud,
+.layer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.hidden {
+    display: none;
+}
+
+.row {
+    flex-direction: row;
+    align-items: center;
+}
+
+.row--gap {
+    margin-top: 8px;
+}
+
+.row--end {
+    justify-content: flex-end;
+}
+
+/* ---- Overlays ---- */
+
+.hurt {
+    border-width: 70px;
+    border-color: rgba(150, 10, 16, 0.55);
+    opacity: 0;
+}
+
+.fade {
+    background-color: rgb(0, 0, 0);
+    opacity: 0;
+}
+
+.crosshair {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 22px;
+    height: 22px;
+    margin-left: -11px;
+    margin-top: -11px;
+    border-width: 2px;
+    border-radius: 11px;
+    border-color: rgba(220, 40, 40, 0.75);
+    align-items: center;
+    justify-content: center;
+}
+
+.crosshair__dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 2px;
+    background-color: rgba(240, 70, 60, 0.9);
+}
+
+/* ---- Panels ---- */
+
+.panel {
+    position: absolute;
+    padding: 10px 14px;
+    background-color: var(--panel);
+    border-width: 1px;
+    border-color: var(--edge);
+    border-radius: 4px;
+}
+
+.panel--status {
+    left: 18px;
+    top: 16px;
+    width: 330px;
+}
+
+.panel--tally {
+    right: 18px;
+    top: 16px;
+    width: 250px;
+    align-items: flex-end;
+}
+
+.panel--weapons {
+    right: 18px;
+    bottom: 18px;
+    width: 220px;
+    padding: 8px 12px;
+}
+
+.caption {
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--muted);
+}
+
+.caption--torch {
+    margin-left: 16px;
+    margin-right: 8px;
+}
+
+.value {
+    font-size: 20px;
+    margin-left: 6px;
+    margin-right: 6px;
+    -unity-font-definition: url("ExoBlack.asset");
+}
+
+.value--orb {
+    color: var(--orb);
+}
+
+.value--gem {
+    color: var(--gem);
+}
+
+.value--done {
+    color: var(--gold);
+}
+
+.score {
+    font-size: 34px;
+    color: var(--bone);
+    -unity-text-align: middle-right;
+}
+
+.lives {
+    flex-direction: row;
+    margin-left: auto;
+}
+
+.life {
+    width: 12px;
+    height: 12px;
+    margin-left: 6px;
+    rotate: 45deg;
+    background-color: var(--blood);
+    border-width: 1px;
+    border-color: rgb(255, 120, 110);
+}
+
+.life--lost {
+    background-color: rgba(60, 20, 20, 0.6);
+    border-color: rgba(120, 60, 60, 0.6);
+}
+
+.icon {
+    width: 16px;
+    height: 16px;
+}
+
+.icon--orb {
+    border-radius: 8px;
+    background-color: var(--orb);
+}
+
+.icon--gem {
+    width: 12px;
+    height: 12px;
+    margin: 2px;
+    rotate: 45deg;
+    background-color: var(--gem);
+}
+
+.icon--potion {
+    width: 12px;
+    height: 16px;
+    border-radius: 6px;
+    background-color: var(--blood);
+}
+
+/* ---- Bars ---- */
+
+.bar {
+    height: 14px;
+    margin-top: 6px;
+    background-color: rgba(40, 10, 12, 0.9);
+    border-width: 1px;
+    border-color: rgba(120, 30, 30, 0.8);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.bar--stamina {
+    height: 4px;
+    margin-top: 4px;
+    border-width: 0;
+    background-color: rgba(60, 50, 40, 0.6);
+}
+
+.bar--battery {
+    flex-grow: 1;
+    height: 8px;
+    margin-top: 0;
+    border-color: rgba(160, 140, 90, 0.6);
+    background-color: rgba(30, 26, 18, 0.9);
+}
+
+.bar__fill {
+    height: 100%;
+    width: 100%;
+}
+
+.bar__fill--health {
+    background-color: var(--blood);
+}
+
+.bar__fill--low {
+    background-color: rgb(235, 40, 40);
+}
+
+.bar__fill--stamina {
+    background-color: rgba(230, 220, 190, 0.8);
+}
+
+.bar__fill--winded {
+    background-color: rgba(200, 90, 60, 0.9);
+}
+
+.bar__fill--battery {
+    background-color: rgb(250, 230, 170);
+}
+
+.bar__fill--off {
+    background-color: rgba(130, 120, 90, 0.8);
+}
+
+/* ---- Weapons ---- */
+
+.weapon {
+    font-size: 16px;
+    color: var(--muted);
+    padding: 2px 6px;
+    letter-spacing: 1px;
+}
+
+.weapon--empty {
+    color: rgba(150, 120, 110, 0.6);
+}
+
+.weapon--current {
+    color: var(--bone);
+    background-color: rgba(192, 32, 42, 0.45);
+    -unity-font-definition: url("ExoBlack.asset");
+}
+
+/* ---- Objective, boss and dawn ---- */
+
+.top {
+    position: absolute;
+    left: 360px;
+    right: 290px;
+    top: 18px;
+    align-items: center;
+}
+
+.objective {
+    font-size: 17px;
+    padding: 6px 14px;
+    background-color: rgba(12, 9, 11, 0.55);
+    border-radius: 3px;
+    -unity-text-align: middle-center;
+    white-space: normal;
+}
+
+.boss,
+.dawn {
+    width: 460px;
+    margin-top: 10px;
+    align-items: center;
+}
+
+.boss__name {
+    font-size: 14px;
+    letter-spacing: 4px;
+    color: rgb(255, 120, 100);
+    -unity-font-definition: url("ExoBlack.asset");
+}
+
+.boss__track,
+.dawn__track {
+    width: 100%;
+    height: 12px;
+    margin-top: 4px;
+    background-color: rgba(30, 6, 8, 0.85);
+    border-width: 1px;
+    border-color: rgba(180, 40, 40, 0.8);
+}
+
+.boss__fill {
+    height: 100%;
+    background-color: rgb(200, 30, 30);
+}
+
+.dawn__track {
+    border-color: rgba(230, 160, 110, 0.8);
+    background-color: rgba(30, 20, 40, 0.85);
+}
+
+.dawn__fill {
+    height: 100%;
+    background-color: rgb(255, 170, 100);
+}
+
+/* ---- Banners and toasts ---- */
+
+.toast {
+    position: absolute;
+    bottom: 96px;
+    left: 300px;
+    right: 300px;
+    padding: 8px 16px;
+    font-size: 17px;
+    -unity-text-align: middle-center;
+    white-space: normal;
+    background-color: rgba(12, 9, 11, 0.75);
+    border-radius: 3px;
+}
+
+.banner {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 34%;
+    align-items: center;
+}
+
+.banner__title {
+    font-size: 54px;
+    color: var(--blood);
+    letter-spacing: 3px;
+    -unity-text-align: middle-center;
+    text-shadow: 0 3px 8px rgba(0, 0, 0, 0.9);
+}
+
+.banner__sub {
+    font-size: 20px;
+    margin-top: 4px;
+    color: var(--bone);
+    -unity-text-align: middle-center;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+}
+
+/* ---- Menus ---- */
+
+.menu-layer {
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(4, 3, 6, 0.45);
+}
+
+.menu {
+    width: 600px;
+    max-height: 660px;
+    padding: 26px 36px 22px 36px;
+    background-color: rgba(10, 7, 9, 0.88);
+    border-width: 2px;
+    border-color: var(--edge);
+    border-radius: 4px;
+    align-items: center;
+}
+
+.menu--wide {
+    width: 820px;
+}
+
+.menu--title {
+    background-color: rgba(10, 7, 9, 0.6);
+    border-width: 0;
+}
+
+.logo {
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.logo__word {
+    font-size: 104px;
+    color: var(--blood);
+    letter-spacing: 18px;
+    -unity-text-align: middle-center;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.95);
+}
+
+.logo__sub {
+    font-size: 24px;
+    letter-spacing: 10px;
+    color: var(--bone);
+    margin-top: -14px;
+    -unity-text-align: middle-center;
+}
+
+.menu__kicker {
+    font-size: 14px;
+    letter-spacing: 4px;
+    color: var(--muted);
+    -unity-text-align: middle-center;
+}
+
+.menu__title {
+    font-size: 40px;
+    color: var(--blood);
+    letter-spacing: 2px;
+    margin-bottom: 4px;
+    -unity-text-align: middle-center;
+    white-space: normal;
+}
+
+.menu__subtitle {
+    font-size: 17px;
+    color: var(--gold);
+    margin-bottom: 10px;
+    -unity-text-align: middle-center;
+    white-space: normal;
+}
+
+.menu__body {
+    font-size: 17px;
+    color: var(--bone);
+    margin-bottom: 14px;
+    -unity-text-align: upper-left;
+    white-space: normal;
+    width: 100%;
+}
+
+.menu__items {
+    width: 100%;
+    align-items: stretch;
+}
+
+.menu__item {
+    font-size: 21px;
+    padding: 6px 14px;
+    margin: 2px 0;
+    color: var(--muted);
+    -unity-text-align: middle-center;
+    border-width: 1px;
+    border-color: rgba(0, 0, 0, 0);
+    border-radius: 3px;
+}
+
+.menu__item--selected {
+    color: var(--bone);
+    background-color: rgba(150, 20, 28, 0.75);
+    border-color: rgba(240, 120, 110, 0.6);
+    -unity-font-definition: url("ExoBlack.asset");
+}
+
+.menu__item--disabled {
+    color: rgba(130, 110, 100, 0.45);
+}
+
+.menu__footer {
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: 12px;
+    -unity-text-align: middle-center;
+    white-space: normal;
+}
