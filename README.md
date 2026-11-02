@@ -1,5 +1,8 @@
-# Alba
-UTP - Homework
-All assets used are free and have a free license for Unity Engine, you can find them in the Unity Store.
-The music of the levels was downloaded from YouTube, so it cannot be used for commercial purposes.
-This is just a small project that sought to test an idea, while fulfilling an assignment from the university, but it can serve as the basis for any similar development, or proof of concept.
+# Alba: Secret History
+
+A 2021 university homework (UTP) that is being rebuilt from scratch in Unity 6.
+
+The original Unity project (about 1.7 GB, made with Asset Store packages and music that cannot
+be redistributed) was never in this repository. Four reduced captures of it are kept in
+[`docs/original`](docs/original), and a demo video of the 2021 version is on YouTube:
+<https://youtu.be/bA61OmH7u24>.
