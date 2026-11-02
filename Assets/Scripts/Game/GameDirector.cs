@@ -86,6 +86,7 @@ namespace Alba.Game
 
         public void ToTitle()
         {
+            RecordPendingOutcome();
             Screen = GameScreen.Title;
             Time.timeScale = 1f;
             Run = null;
@@ -286,6 +287,7 @@ namespace Alba.Game
         public void RetryChapter()
         {
             if (Run == null) return;
+            RecordPendingOutcome();
             Run.RetryChapter();
             ShowChapterIntro();
         }
@@ -345,14 +347,23 @@ namespace Alba.Game
             hud.Tick(dt);
             toastCooldown = Mathf.Max(0f, toastCooldown - dt);
 
+            GameScreen screenBefore = Screen;
+            MenuPage pageBefore = hud.MenuOpen ? hud.Page : null;
             if (hud.MenuOpen) HandleMenu();
+            // A key that acted on the menu (Esc as Back, say) must not act again on the new screen.
+            bool menuActed = Screen != screenBefore || (hud.MenuOpen ? hud.Page : null) != pageBefore;
 
             switch (Screen)
             {
                 case GameScreen.Playing:
-                    Play(dt);
+                    if (!menuActed) Play(dt);
                     break;
                 case GameScreen.Paused:
+                    if (!menuActed && !ScriptedInput && input.Pause && hud.MenuOpen && hud.Page.Id == "pause")
+                    {
+                        Resume();
+                        break;
+                    }
                     rig.FollowPlayer(Run.Stage.Player, world.Height(Run.Stage.Player.Position), false, 0f, 0f, Vector2.zero);
                     break;
                 default:
@@ -716,6 +727,29 @@ namespace Alba.Game
         }
 
         // ---- Outcomes ----
+
+        /// <summary>
+        /// Leaving through the pause menu during the short fade after a clear, a death or the dawn
+        /// would skip the outcome screen, which is where the records are saved; save them here instead.
+        /// </summary>
+        void RecordPendingOutcome()
+        {
+            if (Run == null || Screen != GameScreen.Paused) return;
+            switch (Run.Outcome)
+            {
+                case RunOutcome.ChapterClear:
+                    Records.Unlock(Run.ChapterIndex + 1);
+                    Records.Submit(Run.Score);
+                    break;
+                case RunOutcome.GameOver:
+                    Records.Submit(Run.Score);
+                    break;
+                case RunOutcome.Victory:
+                    Records.Submit(Run.Score);
+                    Records.AddEscape();
+                    break;
+            }
+        }
 
         void ShowOutcome()
         {

@@ -4,6 +4,7 @@
     "references": [
         "Alba.Core",
         "Alba.Game",
+        "Unity.InputSystem",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner"
     ],
