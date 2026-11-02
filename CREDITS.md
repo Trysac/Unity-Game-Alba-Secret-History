@@ -20,7 +20,7 @@ The original *Alba* was a university homework at the Technological University of
 Its Unity project was never in this repository: it lived on a university SharePoint with an
 executable, and it used free Unity Asset Store packages and level music downloaded from
 YouTube, as its README said. None of that was used for the rebuild. The repository only kept
-seventeen screenshots of it and a text file with the SharePoint and YouTube links. Four of the
+seventeen screenshots of it and a text file with the SharePoint and YouTube links. Three of the
 screenshots, reduced in size, remain in [`docs/original`](docs/original) as a record of that
-version; they show its Asset Store art. The other screenshots and the link file were removed
+version; they show its Asset Store art and are not covered by the MIT licence. The other screenshots and the link file were removed
 from the tree; they remain in the git history, which was not rewritten.

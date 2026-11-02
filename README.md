@@ -4,7 +4,7 @@ A small first-person horror game set on a Samhain night in the Scottish Highland
 Unity 6. Find the sealstones that open the old stone circles, light the lanterns, fight the
 creatures that come out of the dark, and escape before dawn.
 
-![Facing Am Fomhair, the giant of Dunadd Keep](docs/screenshots/giant.png)
+![Facing Am Famhair, the giant of Dunadd Keep](docs/screenshots/giant.png)
 
 | | |
 |---|---|
@@ -75,7 +75,7 @@ Settings: music and sound volume, look speed, inverted look and brightness, save
   He believed the standing stones of Alba are locks on a door that opens on Samhain night. The
   door is open, and the only way home is through it, before dawn closes it again.
 - **Four chapters.** The Stones of Calanais (a rainy moor and its stone circle), the Black Wood
-  (a fog-filled pinewood full of wisps), Dunadd Keep (a ruined hill fort guarded by Am Fomhair,
+  (a fog-filled pinewood full of wisps), Dunadd Keep (a ruined hill fort guarded by Am Famhair,
   the giant of the old stories) and Alba, a last circle on the cliffs where you hold out
   against waves of creatures until sunrise. Each opens with a story card.
 - **The goal.** Purple sealstones (3, 4 and 3) open the portal at the heart of each chapter's
@@ -87,7 +87,7 @@ Settings: music and sound volume, look speed, inverted look and brightness, save
   drains while it is on and recovers while it is off.
 - **Creatures.** Crawlers chase what they see and rear up before they strike, so backing away
   makes them miss. Wisps drift through trees and can only be hurt, and are slowed, inside the
-  torch beam. Am Fomhair raises both fists before it slams the ground; at half health it rages,
+  torch beam. Am Famhair raises both fists before it slams the ground; at half health it rages,
   moves faster and calls three crawlers.
 - **Score and records.** Orbs 10, sealstones 50, journal pages 100, creatures 25 to 600, 250
   for every chapter and 250 more for one cleared without falling. The best score, the chapters
@@ -113,9 +113,10 @@ Settings: music and sound volume, look speed, inverted look and brightness, save
 - **Feedback from events.** The core reports what happened in each step (a shot, a hit, a
   windup, a lantern lit, the portal opening) and the game layer turns those events into sounds,
   particles, camera shake, banners and hints, so the rules never call into Unity.
-- **Tested flows.** Eight PlayMode tests drive the real scene: the prologue and first steps,
+- **Tested flows.** Eleven PlayMode tests drive the real scene: the prologue and first steps,
   lanterns and respawns, game over and retry, sealstones opening the portal and unlocking the
-  next chapter, pause, restart, settings, the journal, and the dawn ending.
+  next chapter, pause (including Esc and P on a virtual keyboard), restart, settings, the journal,
+  the dawn ending, and leaving through the pause menu right after an escape.
 - **Generated audio and assets.** Music in Scottish modes over a pipe-like drone, rain and wind,
   and every effect come from a small synthesizer in `tools/audio`; the materials, font atlases,
   icon, scene, quality and player settings come from `ProjectBuilder.cs`. The UI is UI Toolkit
@@ -130,10 +131,11 @@ creatures and an ogre in a castle courtyard, a blue portal to escape through, an
 and "You Didn't Escape" endings with a best score. A video of that version is on
 [YouTube](https://youtu.be/bA61OmH7u24).
 
-| | |
-|---|---|
-| ![The 2021 title screen](docs/original/title.png) | ![The 2021 game in the stones](docs/original/standing-stones.png) |
-| ![2021: creatures in the fog](docs/original/crawlers.png) | ![2021: the escape portal](docs/original/portal.png) |
+| | | |
+|---|---|---|
+| ![The 2021 game in the stones](docs/original/standing-stones.png) | ![2021: creatures in the fog](docs/original/crawlers.png) | ![2021: the escape portal](docs/original/portal.png) |
+
+These three captures show third-party Asset Store art and are kept only as a record of the 2021 version; they are not covered by this repository's MIT licence.
 
 The project itself was never pushed here (it was 1.7 GB and used store assets and music that
 cannot be shared), so in 2026 the game was rebuilt from scratch in Unity 6 from those captures:
