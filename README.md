@@ -13,6 +13,16 @@ creatures that come out of the dark, and escape before dawn.
 | ![The gate of Dunadd Keep](docs/screenshots/keep.png) | ![Holding the last circle as dawn breaks](docs/screenshots/dawn.png) |
 | ![A chapter's results](docs/screenshots/clear.png) | ![The ending](docs/screenshots/victory.png) |
 
+## Play it
+
+- **In your browser:** [trysac.github.io/Unity-Game-Alba-Secret-History](https://trysac.github.io/Unity-Game-Alba-Secret-History/)
+- **On itch.io:** [trysac.itch.io/alba-secret-history](https://trysac.itch.io/alba-secret-history)
+- **Get the code:** fork this repository, or clone it:
+
+  ```bash
+  git clone https://github.com/Trysac/Unity-Game-Alba-Secret-History.git
+  ```
+
 ## Run it
 
 1. Install **Unity 6000.3.27f1 (Unity 6 LTS)** with Unity Hub (add the Windows or Web build
