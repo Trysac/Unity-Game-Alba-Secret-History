@@ -12,6 +12,9 @@ namespace Alba.Game
     /// Without the -screenshot argument nothing is created, so normal runs and WebGL builds (which
     /// have no command line) are unaffected. The same hook runs inside the editor
     /// (ProjectBuilder.CaptureScreenshots), which renders the camera and the HUD off screen and blends them.
+    /// With <c>-frames N -fps F</c> each scenario is recorded instead as N numbered frames
+    /// (<c>&lt;folder&gt;/&lt;scenario&gt;/frame_0000.png</c>) at a fixed timestep of 1/F seconds;
+    /// the <c>gameplay</c> scenario walks to a lantern and fights a crawler for the README GIF.
     /// </summary>
     public sealed class ScreenshotScenarios : MonoBehaviour
     {
@@ -24,6 +27,8 @@ namespace Alba.Game
         RenderTexture sceneTarget;
         RenderTexture uiTarget;
         GameDirector director;
+        int frames;
+        int fps = 15;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void StartWhenRequested()
@@ -33,6 +38,8 @@ namespace Alba.Game
             var host = new GameObject(nameof(ScreenshotScenarios)).AddComponent<ScreenshotScenarios>();
             host.folder = target;
             host.scenarios = (Argument("-scenario") ?? DefaultScenarios).Split(',');
+            int.TryParse(Argument("-frames"), out host.frames);
+            if (int.TryParse(Argument("-fps"), out int rate) && rate > 0) host.fps = rate;
         }
 
         IEnumerator Start()
@@ -59,6 +66,13 @@ namespace Alba.Game
                 director.ScriptedInput = true;
                 director.Frozen = false;
                 yield return Stage(scenario);
+                if (frames > 0)
+                {
+                    yield return Record(scenario);
+                    director.Frozen = false;
+                    Time.timeScale = 1f;
+                    continue;
+                }
                 Texture2D shot;
                 if (Application.isEditor)
                 {
@@ -266,10 +280,91 @@ namespace Alba.Game
                     yield return Wait(3.5f);
                     break;
                 }
+                case "gameplay":
+                {
+                    yield return Begin(1);
+                    Stage stage = director.Run.Stage;
+                    TakeSome(stage, PickupKind.Orb, 6);
+                    TakeSome(stage, PickupKind.Gem, 1);
+                    stage.Player.Arsenal.AddAmmo(WeaponKind.Shotgun, 12);
+                    stage.Player.Arsenal.Select(WeaponKind.Shotgun);
+                    director.Rig.ShowWeapon(WeaponKind.Shotgun, instant: true);
+                    director.PlacePlayer(new Vec2(-28f, -35f), 0f);
+                    stage.Player.Pitch = 3f;
+                    Enemy crawler = stage.Enemies.Find(e => e.Kind == EnemyKind.Crawler);
+                    crawler.Position = new Vec2(-19f, -21f);
+                    crawler.State = EnemyState.Chase;
+                    director.Frozen = false;
+                    break;
+                }
                 default:
                     Debug.LogWarning($"Unknown screenshot scenario '{scenario}'.");
                     break;
             }
+        }
+
+        /// <summary>Writes <see cref="frames"/> frames of the scenario at a fixed timestep.</summary>
+        IEnumerator Record(string scenario)
+        {
+            string target = Path.Combine(folder, scenario);
+            Directory.CreateDirectory(target);
+            Time.captureFramerate = fps;
+            for (int i = 0; i < frames; i++)
+            {
+                if (scenario == "gameplay") PlayStep(i / (float)fps, 1f / fps);
+                yield return null;
+                Texture2D shot;
+                if (Application.isEditor)
+                {
+                    shot = CaptureOffscreen();
+                }
+                else
+                {
+                    yield return new WaitForEndOfFrame();
+                    shot = ScreenCapture.CaptureScreenshotAsTexture();
+                }
+                File.WriteAllBytes(Path.Combine(target, $"frame_{i:0000}.png"), shot.EncodeToPNG());
+                Destroy(shot);
+            }
+            Time.captureFramerate = 0;
+            director.ScriptedFrame = InputFrame.None;
+            Debug.Log($"Saved {frames} frames of {scenario}");
+        }
+
+        /// <summary>
+        /// One frame of the scripted player: walk up the path past the lantern, then turn
+        /// to the crawler coming out of the trees and fire until it falls. The player cannot be hurt.
+        /// </summary>
+        void PlayStep(float time, float dt)
+        {
+            Stage stage = director.Run.Stage;
+            stage.Player.HurtTimer = 100f;
+            Enemy foe = null;
+            float nearest = float.MaxValue;
+            foreach (Enemy e in stage.Enemies)
+            {
+                if (!e.Alive) continue;
+                float distance = Vec2.Distance(e.Position, stage.Player.Position);
+                if (distance < nearest)
+                {
+                    nearest = distance;
+                    foe = e;
+                }
+            }
+            bool walking = time < 2.6f && nearest > 5f;
+            bool fighting = !walking && foe != null && nearest < 14f;
+            float yawDelta = 0f;
+            if (fighting)
+            {
+                float want = (foe.Position - stage.Player.Position).Yaw;
+                float turn = Mathf.DeltaAngle(stage.Player.Yaw, want);
+                yawDelta = Mathf.Clamp(turn, -150f * dt, 150f * dt);
+                bool aimed = Mathf.Abs(turn) < 6f && nearest < 9f;
+                director.ScriptedFrame = new InputFrame(Vec2.Zero, yawDelta, 0f, firePressed: aimed, fireHeld: aimed);
+                return;
+            }
+            Vec2 walk = walking ? new Vec2(0f, 0.9f) : Vec2.Zero;
+            director.ScriptedFrame = new InputFrame(walk, yawDelta);
         }
 
         /// <summary>Starts a chapter straight away, with nothing pressed.</summary>
