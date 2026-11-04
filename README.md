@@ -4,6 +4,8 @@ A small first-person horror game set on a Samhain night in the Scottish Highland
 Unity 6. Find the sealstones that open the old stone circles, light the lanterns, fight the
 creatures that come out of the dark, and escape before dawn.
 
+![Gameplay](docs/media/gameplay.gif)
+
 ![Facing Am Famhair, the giant of Dunadd Keep](docs/screenshots/giant.png)
 
 | | |
